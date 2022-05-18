@@ -14,8 +14,8 @@ const InputArrow = () => {
         // 스프레드 연산자(...)를 사용해서 form안의 값을 꺼내서 사용
         // 동일한 키값은 가장 마지막에 작성된 값으로 대체
         const nextForm = {
-            ...form,
-            [e.target.name] : e.target.value
+            ...form, // user : "", message : ""
+            [e.target.name] : e.target.value // user : 'sdfsdf'
         }
         setForm(nextForm);
     }
