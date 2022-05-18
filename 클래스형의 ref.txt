@@ -1,0 +1,39 @@
+<<클래스형의 ref>>
+
+클래스형 함수는 부모참조로서 상속받아서 선언한다.
+
+constructor에 값들을 정의 해준다
+
+constructor(props) {
+        super(props);
+}
+를 이용해서 부모의 state값들을 props로서 받아올수있다.
+(적지 않아도 자동적으로 참조해오기때문에 적지않아도 사용가능)
+
+클래스형 함수에는 태그에 ref 속성을 달수있게되는데
+이것은 가상dom 자체에 직접 접근하여
+그 ref 속성을 적어준 요소를 선언한 이름의 요소로서 정의하는기능이다
+(dom에 이름을 다는 방법)
+이 ref는 dom을 꼭 직접 건드려야할때 사용되는데
+그 경우는 
+1. 특정 input에 포커스 주는경우
+2. 스크롤 박스를 조작하는경우
+3. canvas 요소에 그림을 그리는 경우 정도이다.
+하지만  웬만해선 이런 경우가 잘 오지않으므로 사용하지 않음
+
+방법 :
+input ref={this.myred}
+
+constructor(props) {
+        this.myred = React.createRef();
+} 하면 가상 dom에 myred라는 이름이 생기고 그것은 input을 가리킴
+
+<button onClick={this.myredchange}>
+   컬러변경
+ </button>
+
+this.myredchange = ()=>{
+            if(this.myred) this.myred.current.style.background = "red";
+        }
+하게되면 버튼 클릭시 this.myred 값이 있기때문에
+myred안의 current안의 style속성의 배경색을 빨강으로 바꿔줌
